@@ -7,6 +7,9 @@ public class PController implements UltrasonicController {
   /* Constants */
   private static final int MOTOR_SPEED = 200;
   private static final int FILTER_OUT = 20;
+  
+  //Test gain
+  private static final double GAIN = 5;
 
   private final int bandCenter;
   private final int bandWidth;
@@ -48,6 +51,30 @@ public class PController implements UltrasonicController {
     }
 
     // TODO: process a movement based on the us distance passed in (P style)
+    float error = bandCenter - distance;
+  //  float MOTOR_ADJUST = Math.abs(error/bandWidth);
+    float motorAdjust = (float) Math.abs(error * GAIN);
+	if (error <= bandWidth) {
+		// if the error is outside the band width on the right
+		// turn left
+		WallFollowingLab.leftMotor.setSpeed((int) Math.max((MOTOR_SPEED - motorAdjust), 110));
+		WallFollowingLab.rightMotor.setSpeed((int) Math.min((MOTOR_SPEED), 300));
+		WallFollowingLab.leftMotor.forward();
+		WallFollowingLab.rightMotor.forward();
+	} else if (error >= -bandWidth) {
+		// if it's outside the band width on the left
+		// turn right
+		WallFollowingLab.leftMotor.setSpeed(Math.min((MOTOR_SPEED + 2*motorAdjust), 400));
+		WallFollowingLab.rightMotor.setSpeed(Math.max((MOTOR_SPEED - 2*motorAdjust), 40));
+		WallFollowingLab.leftMotor.forward();
+		WallFollowingLab.rightMotor.forward();
+	} else {
+		// if it's inside the acceptable band width, go forward
+		WallFollowingLab.leftMotor.setSpeed(MOTOR_SPEED);
+		WallFollowingLab.rightMotor.setSpeed(MOTOR_SPEED);
+		WallFollowingLab.leftMotor.forward();
+		WallFollowingLab.rightMotor.forward();
+	}
   }
 
 
