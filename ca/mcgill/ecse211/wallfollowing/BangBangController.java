@@ -55,17 +55,30 @@ public class BangBangController implements UltrasonicController {
 	if (error <= bandwidth) {
 		// if the error is outside the band width on the right
 		// turn left
-		WallFollowingLab.leftMotor.setSpeed(motorLow+10);
-		WallFollowingLab.rightMotor.setSpeed(motorHigh);
+		WallFollowingLab.leftMotor.setSpeed(motorLow+30);
+		WallFollowingLab.rightMotor.setSpeed(motorHigh+20);
+		WallFollowingLab.leftMotor.forward();
+	    WallFollowingLab.rightMotor.forward();
 	} else if (error >= -bandwidth) {
 		// if it's outside the band width on the left
 		// turn right
-		WallFollowingLab.leftMotor.setSpeed(motorHigh);
-		WallFollowingLab.rightMotor.setSpeed(motorLow-60);
+		if(distance < 10) {
+			WallFollowingLab.leftMotor.setSpeed(motorLow-30);
+			WallFollowingLab.rightMotor.setSpeed(motorHigh+30);
+			WallFollowingLab.leftMotor.backward();
+		    WallFollowingLab.rightMotor.backward();
+		} else {
+			WallFollowingLab.leftMotor.setSpeed(motorHigh+30);
+			WallFollowingLab.rightMotor.setSpeed(motorLow-80);
+			WallFollowingLab.leftMotor.forward();
+		    WallFollowingLab.rightMotor.forward();
+		}
 	} else {
 		// if it's inside the acceptable band width, go forward
 		WallFollowingLab.leftMotor.setSpeed(motorHigh);
 		WallFollowingLab.rightMotor.setSpeed(motorHigh);
+		WallFollowingLab.leftMotor.forward();
+	    WallFollowingLab.rightMotor.forward();
 	}
     /*
 	int error = bandCenter - distance;
