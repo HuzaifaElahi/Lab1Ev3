@@ -80,33 +80,7 @@ public class BangBangController implements UltrasonicController {
 		WallFollowingLab.leftMotor.forward();
 	    WallFollowingLab.rightMotor.forward();
 	}
-    /*
-	int error = bandCenter - distance;
-	if (error <= bandwidth) {
-		WallFollowingLab.leftMotor.setSpeed(motorHigh);
-		WallFollowingLab.rightMotor.setSpeed(motorHigh);
-		WallFollowingLab.leftMotor.forward();
-		WallFollowingLab.rightMotor.forward();
-	} 
-	else if(error > 0) { //Turn right
-		WallFollowingLab.leftMotor.setSpeed(motorHigh);
-		WallFollowingLab.rightMotor.setSpeed(motorLow);
-		WallFollowingLab.leftMotor.forward();
-		WallFollowingLab.rightMotor.forward();
-	}
-	else if(error < 0){  //Turn left
-		WallFollowingLab.leftMotor.setSpeed(motorLow);
-		WallFollowingLab.rightMotor.setSpeed(motorHigh);
-		WallFollowingLab.leftMotor.forward();
-		WallFollowingLab.rightMotor.forward();
-	}	*/
-    /*
-    //Turns LEFT
-    WallFollowingLab.leftMotor.setSpeed(motorLow);
-	WallFollowingLab.rightMotor.setSpeed(motorHigh);
-	WallFollowingLab.leftMotor.forward();
-	WallFollowingLab.rightMotor.forward();
-    */
+
   }
 
   @Override

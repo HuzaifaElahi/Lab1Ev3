@@ -65,8 +65,8 @@ public class PController implements UltrasonicController {
 			// if it's outside the band width on the left
 			// turn right
 			if(distance < 10) {
-				WallFollowingLab.leftMotor.setSpeed((int)Math.min((MOTOR_SPEED - 50*motorAdjust), 20));
-				WallFollowingLab.rightMotor.setSpeed((int)Math.max((MOTOR_SPEED + 50*motorAdjust), 300));
+				WallFollowingLab.leftMotor.setSpeed((int)Math.max((MOTOR_SPEED - 100*motorAdjust), 20));
+				WallFollowingLab.rightMotor.setSpeed((int)Math.min((MOTOR_SPEED + 50*motorAdjust), 300));
 				WallFollowingLab.leftMotor.backward();
 				WallFollowingLab.rightMotor.backward();
 			} else {
